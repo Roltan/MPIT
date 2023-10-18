@@ -18,11 +18,25 @@ class Controller extends BaseController
 
         $hotel = $request->input('hotel');
         $radius = $request->input('radius');
-        $like = $request->input('like');
+        // $like = $request->get('like');
+        if($request->input('park')){
+            $like = "park";
+        }
+        if($request->input('kafe')){
+            $like = "kafe";
+        }
 
         if(DB::table('hotel')->where('name',$hotel)->exists()){
-            $dolgA = DB::select("SELECT dolg FROM hotel WHERE name=$hotel");
-            $shirA = DB::select("SELECT shir FROM hotel WHERE name=$hotel");
+            $dolgA = DB::select("SELECT dolg FROM hotel WHERE name='$hotel'");
+            foreach($dolgA as $key){
+                $dolgA = $key->dolg;
+                break;
+            }
+            $shirA = DB::select("SELECT shir FROM hotel WHERE name='$hotel'");
+            foreach($shirA as $key){
+                $shirA = $key->shir;
+                break;
+            }
 
             $id = 1;
             switch($like){
@@ -31,11 +45,21 @@ class Controller extends BaseController
                     while (true) {
                         if(DB::table('park')->where('id',$id)->exists()){
                             $dolg = DB::select("SELECT dolg FROM park WHERE id=$id");
+                            foreach($dolg as $key){
+                                $dolg = $key->dolg;
+                                break;
+                            }
                             $shir = DB::select("SELECT shir FROM park WHERE id=$id");
+                            foreach($shir as $key){
+                                $shir = $key->shir;
+                                break;
+                            }
 
-                            $s = ($shir[0] - $shirA[0])^2 + ($dolg[0] - $dolgA[0])^2;
-                            $s = sqrt($s);
-                            if($s > $radius){
+                            $x = ($shir - $shirA)**2;
+                            $y = ($dolg - $dolgA)**2;
+                            $rad = $x + $y;
+                            $rad = sqrt($rad);
+                            if($rad > $radius){
                                 // неотображать
                                 dd('не нашли');
                             }
@@ -61,5 +85,7 @@ class Controller extends BaseController
             }
             dd($itogList);
         }
+        // мы не знаем такого ателя
+        dd("мы не знаем такого ателя");
     }
 }
