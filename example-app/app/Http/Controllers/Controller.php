@@ -15,11 +15,6 @@ class Controller extends BaseController
 
     
     public function checkRadius(Request $request){
-        $request -> validate([
-            'hotel' => ['min:5','required'],
-            'radius' => ['min:5','required'],
-        ]);
-
         $itogListName = array();
         $itogListIMG = array();
         $itogListDecription = array();
