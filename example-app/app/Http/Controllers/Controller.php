@@ -17,7 +17,7 @@ class Controller extends BaseController
     public function checkRadius(Request $request){
         $itogListName = array();
         $itogListIMG = array();
-        $itogListSubname = array();
+        $itogListDecription = array();
         $itogListReiting = array();
 
         $hotel = $request->input('hotel');
@@ -36,6 +36,7 @@ class Controller extends BaseController
         }
         else{
             if(DB::table('hotel')->where('name',$hotel)->exists()){
+
                 $dolgA = DB::select("SELECT dolg FROM hotel WHERE name='$hotel'");
                 $shirA = DB::select("SELECT shir FROM hotel WHERE name='$hotel'");
 
@@ -54,8 +55,8 @@ class Controller extends BaseController
                                 $name = DB::select("SELECT * FROM $item WHERE id=$id");
                                 $itogListName[] = $name[0]->name;
                                 $itogListReiting[] = $name[0]->reiting;
-                                // $itogListIMG[] = $name[0]->image;
-                                // $itogListSubname[] = $name[0]->subname;
+                                $itogListIMG[] = $name[0]->image;
+                                $itogListDecription[] = $name[0]->decription;
                             }
                             $id++;
                         }
@@ -64,8 +65,9 @@ class Controller extends BaseController
                         }
                     }
                 }
+                
                 $count = count($itogListReiting);
-                return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting]);
+                return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
                 // dd($itogList);
             }
             elseif(DB::table('hotel')->where('adress',$hotel)->exists()){

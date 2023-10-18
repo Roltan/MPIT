@@ -91,14 +91,10 @@
             @for ($i = 0; $i < $count; $i++)
                 <div class="card-block">
                     <div class="card" style="width: 18rem;">
-                        <!-- Сюда картинка -->
-                        <img src="/images/bg.jpg" class="card-img-top"> 
+                        <img src="{{$listIMG[$i]}}" class="card-img-top"> 
                         <div class="card-body">
-                            <!-- сюда имя места -->
                         <h5 class="card-title">{{$listName[$i]}}</h5>
-                        <!-- описание места -->
-                        <p class="card-text">Какое-то описание места</p>
-                        <!-- оценка места -->
+                        <p class="card-text">{{$listDecription[$i]}}</p>
                         <a href="#" class="btn btn-danger">{{$listReiting[$i]}}/5<img src="/images/Star 1.png" class="star"></a>
                         </div>
                     </div>
