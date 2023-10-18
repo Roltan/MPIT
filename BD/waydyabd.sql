@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 18 2023 г., 10:44
--- Версия сервера: 10.8.4-MariaDB
+-- Время создания: Окт 18 2023 г., 10:49
+-- Версия сервера: 8.0.30
 -- Версия PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,11 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `waydyabd` (
-  `id` int(11) NOT NULL,
-  `row1` int(11) NOT NULL,
-  `row2` int(11) NOT NULL,
-  `row3` int(11) NOT NULL
+  `id` int NOT NULL,
+  `row1` int NOT NULL,
+  `row2` int NOT NULL,
+  `row3` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `waydyabd`
+--
+
+INSERT INTO `waydyabd` (`id`, `row1`, `row2`, `row3`) VALUES
+(1, 453, 653, 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
