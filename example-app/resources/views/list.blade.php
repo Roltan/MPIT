@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
-    <script defer src="/js/script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script defer src="script.js"></script>
+    <script defer src="/js/script.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="header">
+    <div class="header" id="header">
         <div class="header-container">
+            <button class="header-burger-btn" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="header-logo">
                 VoyageVoyage
             </div>
             <div class="header-nav">
-                <a href="#" class="nav-item">Карта</a>
-                <a href="#" class="nav-item">Рекомендации</a>
-                <a href="#" class="nav-item">Партнеры</a>
+                <button class="nav-item" id="btn-scroll">Партнеры</button>
             </div>
         </div>
     </div>
@@ -27,128 +29,139 @@
     <div class="main">
         <div class="title-block">
             <div class="title-text">
-                <div class="title-text-bold">Найдем что угодно</div>
-                <div class="title-text-slim">Укажите хотя бы отель что бы мы поняли где искать</div>
-                <button class="btn-hotel">Указать отель</button>
+                <div class="title-text-bold">Найдем, где провесьти время</div>
+                <div class="title-text-slim">Покажем, где погулять, поесть в шаговой доступности от Вас</div>
+                <button class="btn-hotel shadow" id="btn-scroll2">Указать отель</button>
             </div>
         </div>
 
-        <div class="main-title">
-            <div class="main-title-text">Покажем всё</div>
-            <div class="main-title-text">
-                Результаты поиска
-            </div>
-        </div>
+      
         
     <div class="main-block">
         
-        <div class="main-form">
-            <span class="title-text-slim text-dark">Укажите название отеля</span>
+        <div class="main-form" id="main-form">
+            <div class="main-title">
+                <div class="main-title-text">Покажем всё</div>
+            </div>
             <form action="/search" method="POST">
                 @csrf
-                <div class="main-form-search"> 
-                    <input type="text" placeholder="Укажите отель" class="hotelname" name="hotel"> 
-                </div> 
-                <div class="main-form-sort"> 
-                    <input type="text" name="radius"> 
-                    <span>Радиус действия: км</span> 
-                </div> 
-                <div class="main-form-type"> 
-                    <div class="checkbox-park"> 
-                        <input type="checkbox" name="park" id=""> 
-                        <span>Парк</span> 
-                    </div> 
-                    <div class="checkbox-monuments"> 
-                        <input type="checkbox" name="monuments" id=""> 
-                        <span>Кафе</span> 
-                    </div> 
-                    <!-- <span>Категория поиска</span> --> 
-                </div> 
-                <button class="btn-search">Найти</button> 
+                <div class="main-form-search">
+                    <span class="title-text-slim text-dark">Укажите название отеля</span>
+                    <input type="text" class="input form-control border-danger-subtle shadow" style="width: 50%;" name="hotel">
+                </div>
+                <div class="main-form-sort">
+                    <span class="title-text-slim text-dark">Радиус действия: м</span>
+                    <input type="text" class="input form-control border-danger-subtle shadow" style="width: 50%;" name="radius"> 
+                </div>
+                <div class="main-form-type">
+                    <div class="checkbox-park">
+                        <input type="checkbox" name="park" id="">
+                        <span>Парк</span>
+                    </div>
+                    <div class="checkbox-monuments">
+                        <input type="checkbox" name="eat" id="">
+                        <span>Поесть</span>
+                    </div>
+                    <div class="checkbox-monuments">
+                        <input type="checkbox" name="monuments" id="">
+                        <span>Монументы</span>
+                    </div>
+                    <div class="checkbox-monuments">
+                        <input type="checkbox" name="torg_centr" id="">
+                        <span>Торговые центры</span>
+                    </div>
+                    <div class="checkbox-monuments">
+                        <input type="checkbox" name="religion" id="">
+                        <span>Храмы</span>
+                    </div>
+                    <div class="checkbox-monuments">
+                        <input type="checkbox" name="museum" id="">
+                        <span>Музеи</span>
+                    </div>
+                    <!-- <span>Категория поиска</span> -->
+                </div>
+                <button class="btn-search shadow">Найти места</button>
             </form>
-
-            <div class="main-maps">
-                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aec9283dbdb5047be809a5c4e9368fc8155790efaf915ec9b4464117d0d95e6b8&amp;width=620&amp;height=550&amp;lang=ru_RU&amp;scroll=true"></script>
-    
-            </div>
         </div>
-        <div class="main-result">
-            
-            <!-- Сортировка -->
+    </div>
+    <div class="main-result">
+        <div class="main-title">
+            <div class="main-title-text"> Результаты поиска</div>
+        </div>
+        
+            <div class="card-block">
 
-            <div class="main-sort">
-                <div class="main-sort-text">
-                    Сортировать по
-                </div>
-                <div class="btn-group dropend">
-                    <select name="select" size="1">
-                        <button><option selected value="s1">Популярности</option></button>
-                        <button><option value="s2">Посещаемости</option></button>
-                        <button><option value="s3">Пблизости</option></button>
-                    </select>
-                </div>
-            </div>
-            @for ($i = 0; $i < $count; $i++)
-                <div class="card-block">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{$listIMG[$i]}}" class="card-img-top"> 
-                        <div class="card-body">
-                        <h5 class="card-title">{{$listName[$i]}}</h5>
-                        <p class="card-text">{{$listDecription[$i]}}</p>
-                        <a href="#" class="btn btn-danger">{{$listReiting[$i]}}/5<img src="/images/Star 1.png" class="star"></a>
+                @for ($i = 0; $i < $count; $i++)
+                    <div class="card">
+                        <div class="card-body" style="width: 18rem;">
+                            <img src="{{$listIMG[$i]}}" class="card-img-top">
+                            <div class="card-title">
+                                <h5 class="card-title">{{$listName[$i]}}</h5>
+                                <p class="card-text">{{$listDecription[$i]}}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-danger">
+                                {{$listReiting[$i]}}/5 
+                                <img src="/images/Star 1.png" class="star ">
+                            </button>
                         </div>
                     </div>
-                </div>
-            @endfor
-                
-        </div>
+                @endfor
+
     </div>
-      
-    <div class="intermediate-block">
-        <div class="intermediate-nav">
-            <span class="intermediate-title">Часто посещаемые места</span>
+        <div class="intermediate-block">
+            <div class="intermediate-nav">
+                <span class="intermediate-title float-end">Часто посещаемые места</span>
+            </div>
+            <div class="card-popular-list">
+                <div class="card popular " style="width: 18rem;">
+                    <div class="card-body">
+                        <img src="/images/bg.jpg" alt="" class="card-img-top">
+                        <div class="card-title-block">
+                            <h5 class="card-title">Имя места</h5>
+                            <p class="card-text">Какое-то описание места</p>
+                            <p class="card-text">Время работы:</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star "></button>
+                    </div>
+                </div>
+                <div class="card popular">
+                    <div class="card-body">
+                        <img src="/images/bg.jpg" alt="" class="card-img-top w-50 h-50">
+                        <div class="card-title-block">
+                            <h5 class="card-title">Имя места</h5>
+                            <p class="card-text">Какое-то описание места</p>
+                            <p class="card-text">Время работы:</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-danger float-end">4.8/5 <img src="/images/Star 1.png" class="star "></button>
+                    </div>
+                </div>
+                <div class="card popular">
+                    <div class="card-body">
+                        <img src="/images/bg.jpg" alt="" class="card-img-top w-50 h-50">
+                        <div class="card-title-block">
+                            <h5 class="card-title">Имя места</h5>
+                            <p class="card-text">Какое-то описание места</p>
+                            <p class="card-text">Время работы:</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-danger float-end">4.8/5 <img src="/images/Star 1.png" class="star "></button>
+                    </div>
+                </div>
+               
+            </div>
         </div>
-        <div class="card-popular-list">
-            <div class="card popular" style="width: 18rem;">
-                <!-- Сюда картинка -->
-                <img src="/images/bg.jpg" class="card-img-top"> 
-                <div class="card-body">
-                    <!-- сюда имя места -->
-                <h5 class="card-title">Имя места</h5>
-                <!-- описание места -->
-                <p class="card-text">Какое-то описание места</p>
-                <!-- оценка места -->
-                <a href="#" class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star"></a>
-                </div>
-            </div>
-            <div class="card popular" style="width: 18rem;">
-                <!-- Сюда картинка -->
-                <img src="/images/bg.jpg" class="card-img-top"> 
-                <div class="card-body">
-                    <!-- сюда имя места -->
-                <h5 class="card-title">Имя места</h5>
-                <!-- описание места -->
-                <p class="card-text">Какое-то описание места</p>
-                <!-- оценка места -->
-                <a href="#" class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star"></a>
-                </div>
-            </div>
-            <div class="card popular" style="width: 18rem;">
-                <!-- Сюда картинка -->
-                <img src="/images/bg.jpg" class="card-img-top"> 
-                <div class="card-body">
-                    <!-- сюда имя места -->
-                <h5 class="card-title">Имя места</h5>
-                <!-- описание места -->
-                <p class="card-text">Какое-то описание места</p>
-                <!-- оценка места -->
-                <a href="#" class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star"></a>
-                </div>
-            </div>
-        </div>
+        <footer class="footer" id="footer">
+
+        </footer>
+        <div class="go" id="go">На вверх</div>
     </div>
 
-        
-    </div>
 </body>
 </html>

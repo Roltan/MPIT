@@ -30,6 +30,18 @@ class Controller extends BaseController
         if($request->input('monuments')){
             $like[] = "monuments";
         }
+        if($request->input('eat')){
+            $like[] = "eat";
+        }
+        if($request->input('torg_centr')){
+            $like[] = "torg_centr";
+        }
+        if($request->input('religion')){
+            $like[] = "religion";
+        }
+        if($request->input('museum')){
+            $like[] = "museum";
+        }
 
         if(empty($like)){
             dd("вы не выбрали категорию");
@@ -55,7 +67,7 @@ class Controller extends BaseController
                                 $name = DB::select("SELECT * FROM $item WHERE id=$id");
                                 $itogListName[] = $name[0]->name;
                                 $itogListReiting[] = $name[0]->reiting;
-                                $itogListIMG[] = $name[0]->image;
+                                $itogListIMG[] = $name[0]->img;
                                 $itogListDecription[] = $name[0]->decription;
                             }
                             $id++;
@@ -65,7 +77,7 @@ class Controller extends BaseController
                         }
                     }
                 }
-                
+
                 $count = count($itogListReiting);
                 return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
                 // dd($itogList);
