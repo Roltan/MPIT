@@ -43,6 +43,9 @@
             <div class="main-title">
                 <div class="main-title-text">Покажем всё</div>
             </div>
+
+            <div class="alert alert-danger">{{$errors}}</div>
+            
             <form action="/search" method="POST">
                 @csrf
                 <div class="main-form-search">

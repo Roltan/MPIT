@@ -305,3 +305,40 @@ body{
     }
     }
 
+
+    .footer-logo-img{ 
+        width: 152px; 
+        height: 99px; 
+    } 
+     
+    .footer{ 
+        background-color: rgb(236, 34, 34); 
+        display: flex; 
+        justify-content: space-between; 
+    } 
+    .footer-partnes{ 
+        margin-right: 30px; 
+        margin-top: 40px; 
+    } 
+    .footer-logo{ 
+        margin: 20px 30px; 
+    } 
+    .footer-img1{ 
+        width: 66px; 
+        height: 67px; 
+        margin: 0 5px; 
+    } 
+    .footer-img2{ 
+        margin: 0 5px; 
+        width: 50px; 
+        height: 50px; 
+    } 
+    .footer-img3{ 
+        margin: 0 5px; 
+        width: 50px; 
+        height: 50px; 
+    } 
+    .footer-title{ 
+        color: white; 
+        font-weight: bold; 
+    }

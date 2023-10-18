@@ -29,7 +29,7 @@
     <div class="main">
         <div class="title-block">
             <div class="title-text">
-                <div class="title-text-bold">Найдем, где провесьти время</div>
+                <div class="title-text-bold">Найдем, где провести время</div>
                 <div class="title-text-slim">Покажем, где погулять, поесть в шаговой доступности от Вас</div>
                 <button class="btn-hotel shadow" id="btn-scroll2">Указать отель</button>
             </div>
@@ -157,8 +157,16 @@
                
             </div>
         </div>
-        <footer class="footer" id="footer">
-
+        <footer class="footer" id="footer"> 
+            <div class="footer-logo"><img src="/images/footer-logo.png" class="footer-logo-img" alt=""></div> 
+            <div class="footer-partnes"> 
+                <span class="footer-title">Наши партнеры</span> 
+                <div class="footer-partness-img"> 
+                    <a href="https://sferum.ru"><img src="/images/sferum.png" alt="" class="footer-img1"></a> 
+                    <a href="expert.vk.com"><img src="/images/vk.png" alt="" class="footer-img2"></a> 
+                    <a href="mpit.pro"><img src="/images/it.png" alt="" class="footer-img3"></a> 
+                </div> 
+            </div> 
         </footer>
         <div class="go" id="go">На вверх</div>
     </div>

@@ -15,6 +15,11 @@ class Controller extends BaseController
 
     
     public function checkRadius(Request $request){
+        $request -> validate([
+            'hotel' => ['min:5','required'],
+            'radius' => ['min:5','required'],
+        ]);
+
         $itogListName = array();
         $itogListIMG = array();
         $itogListDecription = array();
@@ -44,7 +49,8 @@ class Controller extends BaseController
         }
 
         if(empty($like)){
-            dd("вы не выбрали категорию");
+            $error = "вы не выбрали категорию";
+            return view("alert",['errors'=>$error]);
         }
         else{
             if(DB::table('hotel')->where('name',$hotel)->exists()){
@@ -80,7 +86,6 @@ class Controller extends BaseController
 
                 $count = count($itogListReiting);
                 return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
-                // dd($itogList);
             }
             elseif(DB::table('hotel')->where('adress',$hotel)->exists()){
                 $dolgA = DB::select("SELECT dolg FROM hotel WHERE adress='$hotel'");
@@ -101,8 +106,8 @@ class Controller extends BaseController
                                 $name = DB::select("SELECT * FROM $item WHERE id=$id");
                                 $itogListName[] = $name[0]->name;
                                 $itogListReiting[] = $name[0]->reiting;
-                                // $itogListIMG[] = $name[0]->image;
-                                // $itogListSubname[] = $name[0]->subname;
+                                $itogListIMG[] = $name[0]->img;
+                                $itogListDecription[] = $name[0]->decription;
                             }
                             $id++;
                         }
@@ -111,9 +116,12 @@ class Controller extends BaseController
                         }
                     }
                 }
+                $count = count($itogListReiting);
+                return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
             }
             // мы не знаем такого ателя
-            dd("мы не знаем такого ателя");
+            $error = "мы не знаем такого ателя";
+            return view("alert",['errors'=>$error]);
         }
     }
 }
