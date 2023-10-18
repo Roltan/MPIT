@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+    <script defer src="/js/script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script defer src="/js/script.js"></script>
+    <script defer src="script.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -87,32 +88,23 @@
                     </select>
                 </div>
             </div>
-            <div class="card-block">
-                <div class="card" style="width: 18rem;">
-                    <!-- Сюда картинка -->
-                    <img src="/images/bg.jpg" class="card-img-top"> 
-                    <div class="card-body">
-                        <!-- сюда имя места -->
-                    <h5 class="card-title">Имя места</h5>
-                    <!-- описание места -->
-                    <p class="card-text">Какое-то описание места</p>
-                    <!-- оценка места -->
-                    <a href="#" class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star"></a>
+            @for ($i = 0; $i < $count; $i++)
+                <div class="card-block">
+                    <div class="card" style="width: 18rem;">
+                        <!-- Сюда картинка -->
+                        <img src="/images/bg.jpg" class="card-img-top"> 
+                        <div class="card-body">
+                            <!-- сюда имя места -->
+                        <h5 class="card-title">{{$listName[$i]}}</h5>
+                        <!-- описание места -->
+                        <p class="card-text">Какое-то описание места</p>
+                        <!-- оценка места -->
+                        <a href="#" class="btn btn-danger">{{$listReiting[$i]}}/5<img src="/images/Star 1.png" class="star"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-                <div class="card" style="width: 18rem;">
-                    <!-- Сюда картинка -->
-                    <img src="/images/bg.jpg" class="card-img-top"> 
-                    <div class="card-body">
-                        <!-- сюда имя места -->
-                    <h5 class="card-title">Имя места</h5>
-                    <!-- описание места -->
-                    <p class="card-text">Какое-то описание места</p>
-                    <!-- оценка места -->
-                    <a href="#" class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star"></a>
-                    </div>
-                </div>
+            @endfor
+                
         </div>
     </div>
       

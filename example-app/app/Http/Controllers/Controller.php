@@ -13,79 +13,93 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    
     public function checkRadius(Request $request){
-        $itogList = array();
+        $itogListName = array();
+        $itogListIMG = array();
+        $itogListSubname = array();
+        $itogListReiting = array();
 
         $hotel = $request->input('hotel');
         $radius = $request->input('radius');
-        // $like = $request->get('like');
+        $radius /= 111133;
+        $like = array();
         if($request->input('park')){
-            $like = "park";
+            $like[] = "park";
         }
-        if($request->input('kafe')){
-            $like = "kafe";
+        if($request->input('monuments')){
+            $like[] = "monuments";
         }
 
-        if(DB::table('hotel')->where('name',$hotel)->exists()){
-            $dolgA = DB::select("SELECT dolg FROM hotel WHERE name='$hotel'");
-            foreach($dolgA as $key){
-                $dolgA = $key->dolg;
-                break;
-            }
-            $shirA = DB::select("SELECT shir FROM hotel WHERE name='$hotel'");
-            foreach($shirA as $key){
-                $shirA = $key->shir;
-                break;
-            }
+        if(empty($like)){
+            dd("вы не выбрали категорию");
+        }
+        else{
+            if(DB::table('hotel')->where('name',$hotel)->exists()){
+                $dolgA = DB::select("SELECT dolg FROM hotel WHERE name='$hotel'");
+                $shirA = DB::select("SELECT shir FROM hotel WHERE name='$hotel'");
 
-            $id = 1;
-            switch($like){
-                case "park":
+                $id = 1;
+                foreach($like as $item){
                     // проверить есть ли в окружности это место
                     while (true) {
-                        if(DB::table('park')->where('id',$id)->exists()){
-                            $dolg = DB::select("SELECT dolg FROM park WHERE id=$id");
-                            foreach($dolg as $key){
-                                $dolg = $key->dolg;
-                                break;
-                            }
-                            $shir = DB::select("SELECT shir FROM park WHERE id=$id");
-                            foreach($shir as $key){
-                                $shir = $key->shir;
-                                break;
-                            }
+                        if(DB::table($item)->where('id',$id)->exists()){
+                            $dolg = DB::select("SELECT dolg FROM $item WHERE id=$id");
+                            $shir = DB::select("SELECT shir FROM $item WHERE id=$id");
 
-                            $x = ($shir - $shirA)**2;
-                            $y = ($dolg - $dolgA)**2;
-                            $rad = $x + $y;
+                            $rad = ($shir[0]->shir - $shirA[0]->shir)**2 + ($dolg[0]->dolg - $dolgA[0]->dolg)**2;
                             $rad = sqrt($rad);
-                            if($rad > $radius){
-                                // неотображать
-                                dd('не нашли');
-                            }
-                            else{
+                            if($rad < $radius){
                                 // отобразить
-                                $name = DB::select("SELECT name FROM park WHERE id=$id");
-                                $itogList[] = $name[0];
+                                $name = DB::select("SELECT * FROM $item WHERE id=$id");
+                                $itogListName[] = $name[0]->name;
+                                $itogListReiting[] = $name[0]->reiting;
+                                // $itogListIMG[] = $name[0]->image;
+                                // $itogListSubname[] = $name[0]->subname;
                             }
+                            $id++;
                         }
                         else{
                             break;
                         }
-                        $id++;
                     }
-                    break;
-
-                // тут добовлять case для каждой котегории
-
-                default:
-                    // у нас ещё нет такой котигории
-                    dd("у нас ещё нет такой катигории");
-                    break;
+                }
+                $count = count($itogListReiting);
+                return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting]);
+                // dd($itogList);
             }
-            dd($itogList);
+            elseif(DB::table('hotel')->where('adress',$hotel)->exists()){
+                $dolgA = DB::select("SELECT dolg FROM hotel WHERE adress='$hotel'");
+                $shirA = DB::select("SELECT shir FROM hotel WHERE adress='$hotel'");
+
+                $id = 1;
+                foreach($like as $item){
+                    // проверить есть ли в окружности это место
+                    while (true) {
+                        if(DB::table($item)->where('id',$id)->exists()){
+                            $dolg = DB::select("SELECT dolg FROM $item WHERE id=$id");
+                            $shir = DB::select("SELECT shir FROM $item WHERE id=$id");
+
+                            $rad = ($shir[0]->shir - $shirA[0]->shir)**2 + ($dolg[0]->dolg - $dolgA[0]->dolg)**2;
+                            $rad = sqrt($rad);
+                            if($rad < $radius){
+                                // отобразить
+                                $name = DB::select("SELECT * FROM $item WHERE id=$id");
+                                $itogListName[] = $name[0]->name;
+                                $itogListReiting[] = $name[0]->reiting;
+                                // $itogListIMG[] = $name[0]->image;
+                                // $itogListSubname[] = $name[0]->subname;
+                            }
+                            $id++;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+            }
+            // мы не знаем такого ателя
+            dd("мы не знаем такого ателя");
         }
-        // мы не знаем такого ателя
-        dd("мы не знаем такого ателя");
     }
 }
