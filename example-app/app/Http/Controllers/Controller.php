@@ -77,9 +77,14 @@ class Controller extends BaseController
                         }
                     }
                 }
-
-                $count = count($itogListReiting);
-                return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
+                if(empty($itogListName)){
+                    $error = "в выьранном радиусе ничего нет";
+                    return view("alert",['errors'=>$error]);
+                }
+                else{
+                    $count = count($itogListReiting);
+                    return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
+                }
             }
             elseif(DB::table('hotel')->where('adress',$hotel)->exists()){
                 $dolgA = DB::select("SELECT dolg FROM hotel WHERE adress='$hotel'");
@@ -109,8 +114,14 @@ class Controller extends BaseController
                         }
                     }
                 }
-                $count = count($itogListReiting);
-                return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
+                if(empty($itogListName)){
+                    $error = "в выьранном радиусе ничего нет";
+                    return view("alert",['errors'=>$error]);
+                }
+                else{
+                    $count = count($itogListReiting);
+                    return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
+                }
             }
             // мы не знаем такого ателя
             $error = "мы не знаем такого ателя";
