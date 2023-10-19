@@ -53,25 +53,24 @@ class Controller extends BaseController
                 $dolgA = DB::select("SELECT dolg FROM hotel WHERE name='$hotel'");
                 $shirA = DB::select("SELECT shir FROM hotel WHERE name='$hotel'");
 
-                $id = 1;
                 foreach($like as $item){
+                    $id = 1;
+                    $i = 0;
+                    $bd = DB::table($item)->orderBy('reiting', 'desc')->get();
                     // проверить есть ли в окружности это место
                     while (true) {
                         if(DB::table($item)->where('id',$id)->exists()){
-                            $dolg = DB::select("SELECT dolg FROM $item WHERE id=$id");
-                            $shir = DB::select("SELECT shir FROM $item WHERE id=$id");
-
-                            $rad = ($shir[0]->shir - $shirA[0]->shir)**2 + ($dolg[0]->dolg - $dolgA[0]->dolg)**2;
+                            $rad = ($bd[$i]->shir - $shirA[0]->shir)**2 + ($bd[$i]->dolg - $dolgA[0]->dolg)**2;
                             $rad = sqrt($rad);
                             if($rad < $radius){
                                 // отобразить
-                                $name = DB::select("SELECT * FROM $item WHERE id=$id");
-                                $itogListName[] = $name[0]->name;
-                                $itogListReiting[] = $name[0]->reiting;
-                                $itogListIMG[] = $name[0]->img;
-                                $itogListDecription[] = $name[0]->decription;
+                                $itogListName[] = $bd[$i]->name;
+                                $itogListReiting[] = $bd[$i]->reiting;
+                                $itogListIMG[] = $bd[$i]->img;
+                                $itogListDecription[] = $bd[$i]->decription;
                             }
                             $id++;
+                            $i++;
                         }
                         else{
                             break;
@@ -86,25 +85,24 @@ class Controller extends BaseController
                 $dolgA = DB::select("SELECT dolg FROM hotel WHERE adress='$hotel'");
                 $shirA = DB::select("SELECT shir FROM hotel WHERE adress='$hotel'");
 
-                $id = 1;
                 foreach($like as $item){
+                    $id = 1;
+                    $i = 0;
+                    $bd = DB::table($item)->orderBy('reiting', 'desc')->get();
                     // проверить есть ли в окружности это место
                     while (true) {
                         if(DB::table($item)->where('id',$id)->exists()){
-                            $dolg = DB::select("SELECT dolg FROM $item WHERE id=$id");
-                            $shir = DB::select("SELECT shir FROM $item WHERE id=$id");
-
-                            $rad = ($shir[0]->shir - $shirA[0]->shir)**2 + ($dolg[0]->dolg - $dolgA[0]->dolg)**2;
+                            $rad = ($bd[$i]->shir - $shirA[0]->shir)**2 + ($bd[$i]->dolg - $dolgA[0]->dolg)**2;
                             $rad = sqrt($rad);
                             if($rad < $radius){
                                 // отобразить
-                                $name = DB::select("SELECT * FROM $item WHERE id=$id");
-                                $itogListName[] = $name[0]->name;
-                                $itogListReiting[] = $name[0]->reiting;
-                                $itogListIMG[] = $name[0]->img;
-                                $itogListDecription[] = $name[0]->decription;
+                                $itogListName[] = $bd[$i]->name;
+                                $itogListReiting[] = $bd[$i]->reiting;
+                                $itogListIMG[] = $bd[$i]->img;
+                                $itogListDecription[] = $bd[$i]->decription;
                             }
                             $id++;
+                            $i++;
                         }
                         else{
                             break;

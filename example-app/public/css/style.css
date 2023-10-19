@@ -113,7 +113,7 @@ body{
 .main-title-text{
     font-size: 4em;
     font-weight: bold;
-    color: #ec2222;
+    color: rgb(236, 34, 34);
     display: flex;
 }
 .title-text-slim{
@@ -173,10 +173,10 @@ body{
     margin: 10px 30px;
 }
 .card-block{
+    margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 15px;
+    justify-content: center;
 
 }
 .card-block::after{
@@ -185,6 +185,7 @@ body{
     clear: both;
 }
 .card{
+    
     float: left;
     margin: 0 20px;
 }
@@ -254,24 +255,21 @@ body{
     flex-direction: column;
     margin-left: 10px
 }
-.go-img{
-    width: 20px;
-    height: 30px;
-}
 .go{
     border-radius: 50%;
     background-color: white;
     border: 1px solid rgb(236, 34, 34);
+
     position: fixed;
     right: 20px;
-    top: 90%;
+    top: 80%;
+    font-size: 20px;
     transform: translateY(-50%);
     cursor: pointer;
     padding: 10px 15px;
     color: rgb(236, 34, 34);
     transition: .3s;
     display: none;
-
 }
 .go-show{
     display: block;
@@ -280,8 +278,106 @@ body{
     opacity: .7;
     color: rgb(236, 34, 34);
 }
+
+.footer-logo-img{
+    width: 152px;
+    height: 99px;
+}
+
+.footer{
+    background-color: rgb(236, 34, 34);
+    display: flex;
+    justify-content: space-between;
+}
+.footer-partnes{
+    margin-right: 30px;
+    margin-top: 40px;
+}
+.footer-logo{
+    margin: 20px 30px;
+}
+.footer-img1{
+    width: 66px;
+    height: 67px;
+    margin: 0 5px;
+}
+.footer-img2{
+    margin: 0 5px;
+    width: 50px;
+    height: 50px;
+}
+.footer-img3{
+    margin: 0 5px;
+    width: 50px;
+    height: 50px;
+}
+.footer-title{
+    color: white;
+    font-weight: bold;
+}
+.input-img{
+    height: 30px;
+    width: 30px;
+}
+.checkbox-park{
+    margin: 10px 0;
+}
+#checkbox{
+    margin-right: 5px;
+}
+label{
+    display: flex;
+    align-content: baseline;
+}
+.go-img{ 
+    width: 30px; 
+    height: 35px; 
+}
+.card-popular-list{ 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+} 
+.card{ 
+    margin-bottom: 10px; 
+}
+  .title-text-bold{ 
+            /* font-size: xx-large;  */
+        } 
+        .intermediate-title{ 
+            font-size: x-large; 
+        }
 /* media */
 @media  (max-width: 992px){
+    .btn-hotel{ 
+        width:80%;}
+          .footer-partnes{ 
+                margin-right: 30px; 
+                margin-top: 0; 
+            } 
+            .footer-logo-img{ 
+                width: 125px; 
+                height: 84px; 
+            } 
+            .footer-img1{ 
+                width: 55px; 
+                height: 53px; 
+                margin: 0 5px; 
+            } 
+            .footer-img2{ 
+                margin: 0 5px; 
+                width: 35px; 
+                height: 35px; 
+            } 
+            .footer-img3{ 
+                margin: 0 5px; 
+                width: 35px; 
+                height: 35px; 
+            }
+        
+        .main-title-text{ 
+                font-size: x-large; 
+            }
     .header-burger-btn{
         z-index: 10;
         display: block;
@@ -304,41 +400,20 @@ body{
         transform: translateX(100%);
     }
     }
-
-
-    .footer-logo-img{ 
-        width: 152px; 
-        height: 99px; 
-    } 
-     
-    .footer{ 
-        background-color: rgb(236, 34, 34); 
-        display: flex; 
-        justify-content: space-between; 
-    } 
-    .footer-partnes{ 
-        margin-right: 30px; 
-        margin-top: 40px; 
-    } 
-    .footer-logo{ 
-        margin: 20px 30px; 
-    } 
-    .footer-img1{ 
-        width: 66px; 
-        height: 67px; 
-        margin: 0 5px; 
-    } 
-    .footer-img2{ 
-        margin: 0 5px; 
-        width: 50px; 
-        height: 50px; 
-    } 
-    .footer-img3{ 
-        margin: 0 5px; 
-        width: 50px; 
-        height: 50px; 
-    } 
-    .footer-title{ 
-        color: white; 
-        font-weight: bold; 
+    @media (max-width:720px) { 
+        .title-text-bold{ 
+            font-size: xx-large; 
+        } 
+        .intermediate-title{ 
+            font-size: x-large; 
+        } 
+ 
+        .card-block{ 
+            display: flex; 
+            justify-content: center; 
+            flex-direction: column; 
+        } 
+        .card{ 
+            width: 70%; 
+        } 
     }

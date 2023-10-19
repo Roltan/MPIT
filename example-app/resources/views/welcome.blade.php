@@ -55,28 +55,36 @@
                 </div>
                 <div class="main-form-type">
                     <div class="checkbox-park">
-                        <input type="checkbox" name="park" id="">
+                        <label><input type="checkbox" name="park" id="checkbox1"><img src="/images/Park.png" class="input-img">
                         <span>Парк</span>
+                    </label>
                     </div>
-                    <div class="checkbox-monuments">
-                        <input type="checkbox" name="eat" id="">
-                        <span>Поесть</span>
+                    <div class="checkbox-park">
+                        <label><input type="checkbox" name="eat" id="checkbox"><img src="/images/eat.png" alt="" class="input-img">
+                         <span>Поесть</span>
+                        </label>
                     </div>
-                    <div class="checkbox-monuments">
-                        <input type="checkbox" name="monuments" id="">
+                    <div class="checkbox-park">
+                        <label><input type="checkbox" name="monuments" id="checkbox"><img src="/images/Monument.png" class="input-img">
                         <span>Монументы</span>
+                        </label>
                     </div>
-                    <div class="checkbox-monuments">
-                        <input type="checkbox" name="torg_centr" id="">
+                    <div class="checkbox-park">
+                        <label>
+                            <input type="checkbox" name="torg_centr" id="checkbox"><img src="/images/torg_centr.png" class="input-img">
                         <span>Торговые центры</span>
+                    </label>
                     </div>
-                    <div class="checkbox-monuments">
-                        <input type="checkbox" name="religion" id="">
-                        <span>Храмы</span>
+                    <div class="checkbox-park">
+                        <label>
+                            <input type="checkbox" name="museum" id="checkbox"><img src="/images/Museum.png" class="input-img">
+                            <span>Музеи</span>
+                        </label>
                     </div>
-                    <div class="checkbox-monuments">
-                        <input type="checkbox" name="museum" id="">
-                        <span>Музеи</span>
+                    <div class="checkbox-park">
+                        <label><input type="checkbox" name="religion" id="checkbox"><img src="/images/Religion.png" class="input-img">
+                        <span>Религия</span>
+                    </label>
                     </div>
                     <!-- <span>Категория поиска</span> -->
                 </div>
@@ -88,45 +96,43 @@
             <div class="intermediate-nav">
                 <span class="intermediate-title float-end">Часто посещаемые места</span>
             </div>
-            <div class="card-popular-list">
-                <div class="card popular " style="width: 18rem;">
-                    <div class="card-body">
-                        <img src="/images/bg.jpg" alt="" class="card-img-top">
-                        <div class="card-title-block">
-                            <h5 class="card-title">Имя места</h5>
-                            <p class="card-text">Какое-то описание места</p>
-                            <p class="card-text">Время работы:</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star "></button>
-                    </div>
-                </div>
-                <div class="card popular">
-                    <div class="card-body">
-                        <img src="/images/bg.jpg" alt="" class="card-img-top w-50 h-50">
-                        <div class="card-title-block">
-                            <h5 class="card-title">Имя места</h5>
-                            <p class="card-text">Какое-то описание места</p>
-                            <p class="card-text">Время работы:</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-danger float-end">4.8/5 <img src="/images/Star 1.png" class="star "></button>
-                    </div>
-                </div>
-                <div class="card popular">
-                    <div class="card-body">
-                        <img src="/images/bg.jpg" alt="" class="card-img-top w-50 h-50">
-                        <div class="card-title-block">
-                            <h5 class="card-title">Имя места</h5>
-                            <p class="card-text">Какое-то описание места</p>
-                            <p class="card-text">Время работы:</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-danger float-end">4.8/5 <img src="/images/Star 1.png" class="star "></button>
-                    </div>
+            <div class="card-popular-list"> 
+                <div class="card" style="width: 18rem;"> 
+                    <div class="card-body"> 
+                        <img src="/images/bg.jpg" alt="" class="card-img-top"> 
+                        <div class="card-title-block"> 
+                            <h5 class="card-title">Жиши Суши</h5> 
+                            <p class="card-text">Суши-бар, доставка еды и обедов, кафе</p> 
+                        </div> 
+                    </div> 
+                    <div class="card-footer"> 
+                        <button class="btn btn-danger">5,0/5 <img src="/images/Star 1.png" class="star "></button> 
+                    </div> 
+                </div> 
+                <div class="card" style="width: 18rem;"> 
+                    <div class="card-body" > 
+                        <img src="/images/bg.jpg" class="card-img-top"> 
+                        <div class="card-title"> 
+                            <h5 class="card-title">Дофамин</h5> 
+                            <p class="card-text">Кофейня, кафе</p> 
+                        </div> 
+                    </div> 
+                    <div class="card-footer"> 
+                        <button class="btn btn-danger">4.8/5 <img src="/images/Star 1.png" class="star "></button> 
+                    </div> 
+                </div> 
+                <div class="card" style="width: 18rem;"> 
+                    <div class="card-body" > 
+                        <img src="/images/bg.jpg" class="card-img-top"> 
+                        <div class="card-title"> 
+                            <h5 class="card-title">Муниципальное автономное учреждение культуры Белорецкий историко-краеведческий музей</h5> 
+                            <p class="card-text">Хороший краеведческий музей с экспозициями о природе</p> 
+ 
+                        </div> 
+                    </div> 
+                    <div class="card-footer"> 
+                        <button class="btn btn-danger">4.3/5 <img src="/images/Star 1.png" class="star "></button> 
+                    </div> 
                 </div>
                
             </div>
