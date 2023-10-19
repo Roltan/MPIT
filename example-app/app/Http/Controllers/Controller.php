@@ -33,9 +33,6 @@ class Controller extends BaseController
         if($request->input('eat')){
             $like[] = "eat";
         }
-        if($request->input('torg_centr')){
-            $like[] = "torg_centr";
-        }
         if($request->input('religion')){
             $like[] = "religion";
         }

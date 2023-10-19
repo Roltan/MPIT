@@ -71,12 +71,6 @@
                     </div>
                     <div class="checkbox-park">
                         <label>
-                            <input type="checkbox" name="torg_centr" id="checkbox"><img src="/images/torg_centr.png" class="input-img">
-                        <span>Торговые центры</span>
-                    </label>
-                    </div>
-                    <div class="checkbox-park">
-                        <label>
                             <input type="checkbox" name="museum" id="checkbox"><img src="/images/Museum.png" class="input-img">
                             <span>Музеи</span>
                         </label>
