@@ -1,5 +1,11 @@
 /* media */
-
+.none{
+    display: none;
+}
+.map{
+    width: 500px;
+    height: 500px;
+}
 
 /* header */
 body{

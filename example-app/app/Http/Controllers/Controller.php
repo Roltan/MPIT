@@ -20,6 +20,10 @@ class Controller extends BaseController
         $itogListDecription = array();
         $itogListReiting = array();
 
+        $arrDolg = array();
+        $arrShir = array();
+        $arrName = array();
+
         $hotel = $request->input('hotel');
         $radius = $request->input('radius');
         $radius /= 111133;
@@ -50,6 +54,10 @@ class Controller extends BaseController
                 $dolgA = DB::select("SELECT dolg FROM hotel WHERE name='$hotel'");
                 $shirA = DB::select("SELECT shir FROM hotel WHERE name='$hotel'");
 
+                $arrDolg[] = $dolgA[0]->dolg;
+                $arrShir[] = $shirA[0]->shir;
+                $arrName[] = $hotel;
+
                 foreach($like as $item){
                     $id = 1;
                     $i = 0;
@@ -65,6 +73,11 @@ class Controller extends BaseController
                                 $itogListReiting[] = $bd[$i]->reiting;
                                 $itogListIMG[] = $bd[$i]->img;
                                 $itogListDecription[] = $bd[$i]->decription;
+
+                                // для карты
+                                $arrDolg[] = $bd[$i]->dolg;
+                                $arrShir[] = $bd[$i]->shir;
+                                $arrName[] = $bd[$i]->name;
                             }
                             $id++;
                             $i++;
@@ -80,7 +93,16 @@ class Controller extends BaseController
                 }
                 else{
                     $count = count($itogListReiting);
-                    return view("list",['count'=>$count ,'listName'=>$itogListName, 'listReiting'=>$itogListReiting, 'listIMG'=>$itogListIMG, 'listDecription'=>$itogListDecription]);
+                    // dd($arrName);
+                    return view("list",['count'=>$count,
+                                        'listName'=>$itogListName, 
+                                        'listReiting'=>$itogListReiting, 
+                                        'listIMG'=>$itogListIMG, 
+                                        'listDecription'=>$itogListDecription,
+                                        'arrDolg'=>$arrDolg,
+                                        'arrShir'=>$arrShir,
+                                        'arrName'=>$arrName
+                                    ]);
                 }
             }
             elseif(DB::table('hotel')->where('adress',$hotel)->exists()){

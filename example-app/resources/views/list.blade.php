@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script defer src="/js/script.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=8e1ce2f6-ac5b-4f7a-b2c6-09e7f050957b&lang=ru_RU"></script>
+    <script defer src="/js/map.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -34,11 +36,8 @@
                 <button class="btn-hotel shadow" id="btn-scroll2">Указать отель</button>
             </div>
         </div>
-
-      
-        
+    </div>
     <div class="main-block">
-        
         <div class="main-form" id="main-form">
             <div class="main-title">
                 <div class="main-title-text">Покажем всё</div>
@@ -91,26 +90,33 @@
             <div class="main-title-text"> Результаты поиска</div>
         </div>
         
-            <div class="card-block">
-
-                @for ($i = 0; $i < $count; $i++)
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <img src="{{$listIMG[$i]}}" class="card-img-top" style="height: 284px">
-                            <div class="card-title">
-                                <h5 class="card-title">{{$listName[$i]}}</h5>
-                                <p class="card-text">{{$listDecription[$i]}}</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-danger">
-                                {{$listReiting[$i]}}/5 
-                                <img src="/images/Star 1.png" class="star ">
-                            </button>
+        <div class="card-block">
+            @for ($i = 0; $i < $count; $i++)
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <img src="{{$listIMG[$i]}}" class="card-img-top" style="height: 284px">
+                        <div class="card-title">
+                            <h5 class="card-title">{{$listName[$i]}}</h5>
+                            <p class="card-text">{{$listDecription[$i]}}</p>
                         </div>
                     </div>
-                @endfor
+                    <div class="card-footer">
+                        <button class="btn btn-danger">
+                            {{$listReiting[$i]}}/5 
+                            <img src="/images/Star 1.png" class="star ">
+                        </button>
+                    </div>
+                </div>
+            @endfor
+                
+            @for ($i = 0; $i < $count+1; $i++)
+                <div class="none" name="dolg">{{$arrDolg[$i]}}</div>
+                <div class="none" name="shir">{{$arrShir[$i]}}</div>
+                <div class="none" name="name">{{$arrName[$i]}}</div>
+            @endfor
+        </div>
 
+        <div class="map" id="map"></div>
     </div>
         <div class="intermediate-block">
             <div class="intermediate-nav">
