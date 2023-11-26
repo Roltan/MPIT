@@ -38,8 +38,8 @@ function initMap() {
 
         // при клике на неё
         myPlacemark.events.add(['click'],  function () {
-            // Создаем мультимаршрут и настраиваем его внешний вид с помощью опций.
-            var multiRoute = new ymaps.multiRouter.MultiRoute(
+            // Создаем мультимаршрут
+            var Route = new ymaps.multiRouter.MultiRoute(
                 {
                     referencePoints: [[arrDolg[0].textContent, arrShir[0].textContent],[arrDolg[j].textContent, arrShir[j].textContent]],
                     params: {
@@ -53,7 +53,7 @@ function initMap() {
                     boundsAutoApply: true
                 }
             );
-            map.geoObjects.add(multiRoute);
+            map.geoObjects.add(Route);
         });
         map.geoObjects.add(myPlacemark);
     }
