@@ -1,25 +1,31 @@
 function initMap() {
-    let map = new ymaps.Map("map",
-        {
-            center: [53.966577847187544,58.39979099999999],
-            zoom: 14,
-            controls: ['routePanelControl', 'zoomControl']
-        }
-    );
-
     // тырим масивы из html
     var arrDolg = document.getElementsByName('dolg');
     var arrShir = document.getElementsByName('shir');
     var arrName = document.getElementsByName('name');
 
-    // настройка маршрута
+    let map = new ymaps.Map("map",
+        {
+            center: [arrDolg[0].textContent, arrShir[0].textContent],
+            zoom: 14,
+            controls: ['routePanelControl', 'zoomControl']
+        }
+    );
+
     let control = map.controls.get('routePanelControl');
-    control.routePanel.state.set({
-        type: 'pedestrian',
-        fromEnabled: false,
-        // from: hotelAdress
-        from: `Белорецк, гостиница ${arrName[0].textContent}`,
-        toEnabled: false
+
+    // корды в текст
+    var hotel = ymaps.geocode([arrDolg[0].textContent, arrShir[0].textContent]);
+    hotel.then(function (res) {
+        let hotelAdress = res.geoObjects.get(0).properties.get('text');
+
+        // настройка маршрута
+        control.routePanel.state.set({
+            type: 'pedestrian',
+            fromEnabled: false,
+            from: hotelAdress,
+            toEnabled: false
+        });
     });
     
     // метка отеля
@@ -53,15 +59,9 @@ function initMap() {
                 let adress = res.geoObjects.get(0).properties.get('text');
 
                 control.routePanel.state.set({
-                    type: 'pedestrian',
-                    fromEnabled: false,
-                    // from: hotelAdress
-                    from: `Белорецк, гостиница ${arrName[0].textContent}`,
-                    toEnabled: false,
                     to: adress
                 });
             });
-            
         });
         map.geoObjects.add(myPlacemark);
     }
