@@ -93,7 +93,6 @@ class Controller extends BaseController
                 }
                 else{
                     $count = count($itogListReiting);
-                    // dd($arrName);
                     return view("list",['count'=>$count,
                                         'listName'=>$itogListName, 
                                         'listReiting'=>$itogListReiting, 
